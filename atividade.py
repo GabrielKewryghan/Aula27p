@@ -8,7 +8,6 @@ def cadastro(Nomes, Notas, Faltas, Media, situacoes):
     # Inicia o cadastro de alunos
     while cont <= Qtd_alunos:                                                           
         print (f"\n\nDados do {cont}° aluno")                                          
-
         # Recebe os dados do aluno
         Nome = input("\nEscreva o nome do aluno: ")                                     
         Nt1 = float(input("\nEscreva a primeira nota do aluno: "))                      
@@ -22,23 +21,9 @@ def cadastro(Nomes, Notas, Faltas, Media, situacoes):
             continue  # Volta para o início do loop para tentar novamente             
 
         # Calcula a média
-        Media = (Nt1 + Nt2 + Nt3 + Nt4) / 4                                                
+        Media = (Nt1 + Nt2 + Nt3 + Nt4) / 4    
 
-        # Define a situação do aluno com base nas notas
-        if Media > 10 or Media < 0:                                                     
-            situacao = "Dados invalidos"
-        elif QtdFaltas > 30:                                                              
-            situacao = "Reprovado por faltas" 
-        elif Media >= 8:                                                                  
-            situacao = "Aprovado"                                                    
-        elif Media >= 5:                                                               
-            ntRec = float(input("\nEscreva a nota de recuperação do aluno: "))          
-            if ntRec < (10 - Media):                                                    
-                situacao = "Reprovado na recuperação"                                                  
-            else:                                                                       
-                situacao = "Aprovado na recuperação"                                                   
-        else:                                                                           
-            situacao = "Reprovado"                                                 
+        situacao = condicao(Media,QtdFaltas)                                                                        
 
         # Arredonda a média
         Media = round(Media, 2)                                                            
@@ -54,6 +39,24 @@ def cadastro(Nomes, Notas, Faltas, Media, situacoes):
         print ("--------------------------------------------------------------------------------------------------")
 
     return Nomes, Notas, Faltas, Medias, situacoes
+
+def condicao (Media,QtdFaltas):
+    # Define a situação do aluno com base nas notas
+        if Media > 10 or Media < 0:                                                     
+            situacao = "Dados invalidos"
+        elif QtdFaltas > 30:                                                              
+            situacao = "Reprovado por faltas" 
+        elif Media >= 8:                                                                  
+            situacao = "Aprovado"                                                    
+        elif Media >= 5:                                                               
+            ntRec = float(input("\nEscreva a nota de recuperação do aluno: "))          
+            if ntRec < (10 - Media):                                                    
+                situacao = "Reprovado na recuperação"                                                  
+            else:                                                                       
+                situacao = "Aprovado na recuperação"                                                   
+        else:                                                                           
+            situacao = "Reprovado"
+        return situacao                     
 
 
 # Função para exibir o relatório dos alunos
