@@ -5,7 +5,7 @@ def Nome_valido():
         if nome.isalpha():
             return (nome)
         else:
-            print("\nO nome não pode conter numeros! tente novamente")
+            print("\nEsse não é um nome valido! tente novamente")
 
 #função garantindo que a nota inserida é valida
 def Nt_valida(texto):
@@ -35,13 +35,13 @@ alunos = []
 def cadastro():
     cont = 1  # Contador para o número de alunos
 
-    # Array que vai guardar todos os alunos
+    # Array que vai guardar todos os alunos dentro da função
     alunos = []
 
     while True:
         try:
             Qtd_alunos = int(input("\nEscreva a quantidade de alunos que deseja cadastrar: ")) 
-            print ("----------------------------------------------------------------------------------------------------------")
+            print ("-"*25)
             break
         except ValueError:
             print ("A quantidade de alunos deve ser um numero! tente novamente.")
@@ -91,7 +91,7 @@ def condicao (Media,QtdFaltas):
         elif Media >= 8:                                                                  
             situacao = "Aprovado"                                                    
         elif Media >= 5:                                                               
-            ntRec = float(input("\nEscreva a nota de recuperação do aluno: "))          
+            ntRec = Nt_valida("\nEscreva a nota de recuperação do aluno: ")          
             if ntRec < (10 - Media):                                                    
                 situacao = "Reprovado na recuperação"                                                  
             else:                                                                       
@@ -113,13 +113,13 @@ def relatorio(alunos):
 Decisao = int
 
 while Decisao != 0:
-    print("----------------------------------------------------------------------------------------------------------")
+    print("-"*25)
     print("\nO que deseja fazer?\n\nCadastrar alunos = 1\nVer o relatório dos alunos = 2\nSair do Menu = 0")
     try:
         Decisao = int(input("\nEscreva o número relacionado à ação que quer fazer (1, 2 ou 0): "))
     except ValueError: # Tratamento de erro 
-            print("\nVocê deve fazer uma escolha valida! tente novamente.")
-            continue
+        print("\nVocê deve fazer uma escolha valida! tente novamente.")
+        continue
 
     # Opção 1: Cadastrar alunos
     if Decisao == 1:
@@ -135,7 +135,8 @@ while Decisao != 0:
     # Opção 0: Sair do menu
     elif Decisao == 0:
         print("Tudo bem, o programa vai ser encerrado agora.")
+        break
         
     # Opção inválida
     else:
-        print("Número inválido, os números de operações disponíveis são: 1, 2 ou 0.")
+        print("\nNúmero inválido, os números de operações disponíveis são: 1, 2 ou 0.")
